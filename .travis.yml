@@ -1,7 +1,3 @@
-env:
-  - distro: debianjessie
-    init: "/sbin/init"
-
 services:
   - docker
 
@@ -9,4 +5,9 @@ script:
   - container_id=$(mktemp)
   - docker build -t container_under_test .
   - docker run --detach container_under_test -p 3030:3030 -p 4567:4567 "${init}" > "${container_id}"
+  - sleep 10
   - curl 'http://localhost:4567/info'
+
+notifications:
+  slack:
+    secure: cwFyWMwxOIOv8gV0S6szTCRaH9gJfJBtEf/XAcnUbfrT1+prXur9jCDg5FBy90kUj3EE2zdTJr+9boA6hzqojBWGVKH+QN0sGnYeUWVQSuCgGPb+fzd3xxRL3Nb17oPTnICRoprVBi0qT0EgL2nMLISgExPa0qePQ8S0Z9IQSYpuxYYBpBayD4X3LxdW+M2LlNze4rLmjeVA7dSuGcTabEEiWe3ZounRH3lQypmOky87pNYOoPGon55VAHIvURbQKCZBErKIQ83cImdbyEdf6a5dZaeNBKkD1DZu7trTqSrplqIylcovMSAcKVUd5Un532YKgd8EQ2wFxB7JGQRxOFWSz2Rre6hYtGChFLbZAbx1vKSHStQz+ds1K1aNfxdKoEOeNB9Fved3D+nxVE++COkQmRjy5SxebJP07TrVQNT8qUhKi9+uwDHmxfxXc3GzkK15RoBD5m8wzxN0m6PSbTAUh3HRAEbYAyzkUh5oHlH6mscMfHX3AcfFGjleUjgAQFYPu/l38D/IexKhV+cZo1b98XkB9WEZnQCbTI+Oiv88oUPAtSr8C0urFIav6QrXCV688WicQlEyNr1HzPkCMxdmaiCWTkl4/19rAQlALQ974MOOZcD1GAIrjricHWZi22PgdKX7+mUJGY6Zcxk1bwLA/R260s6zsEI/s+Ckp4M=
