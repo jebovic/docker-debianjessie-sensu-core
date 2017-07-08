@@ -7,7 +7,7 @@ How to Use
 ----------
 
 ```
-docker run -d -t -i -p 3030:3030 -p 4567:4567 jebovic/debianjessie-sensu-core
+docker run -d -i -p 3030:3030 -p 4567:4567 --name sensu-core jebovic/debianjessie-sensu-core
 ```
 
 Notes
