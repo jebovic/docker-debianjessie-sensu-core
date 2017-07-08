@@ -1,0 +1,22 @@
+{
+    "handlers": {
+    "default": {
+      "type": "set",
+      "handlers": [
+        "stdout"
+      ]
+    },
+    "stdout": {
+      "type": "pipe",
+      "command": "cat"
+    },
+    "influxdb_tcp": {
+        "mutator": "only_check_output",
+        "socket": {
+            "host": "127.0.0.1",
+            "port": 2003
+        },
+        "type": "tcp"
+    }
+}
+}

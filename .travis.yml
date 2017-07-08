@@ -1,0 +1,12 @@
+env:
+  - distro: debianjessie
+    init: "/sbin/init"
+
+services:
+  - docker
+
+script:
+  - container_id=$(mktemp)
+  - docker build -t container_under_test .
+  - docker run --detach container_under_test "${init}" > "${container_id}"
+  - curl 'http://localhost:4567'
