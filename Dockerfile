@@ -27,6 +27,7 @@ RUN apt-get remove -y wget  ca-certificates apt-transport-https \
 
 # Configure sensu
 COPY config/sensu /etc/sensu/conf.d
+RUN chown -R sensu:sensu /etc/sensu/conf.d
 
 # Configure supervisord
 COPY config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
